@@ -115,7 +115,7 @@ def render_global_filters(frame: pd.DataFrame) -> FilterSelection:
             key="filter_cafv",
             help="Unknown remains a separate source category.",
         )
-        st.button("Reset filters", on_click=_reset_filters, use_container_width=True)
+        st.button("Reset filters", on_click=_reset_filters, width="stretch")
 
     return FilterSelection(
         washington_only=upstream.washington_only,

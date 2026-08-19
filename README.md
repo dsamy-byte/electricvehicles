@@ -7,8 +7,9 @@ eligibility, and source-data quality.
 
 ## Project status
 
-The project foundation is in place. Data cleaning, analysis, visualization,
-and the dashboard will be implemented incrementally with automated tests.
+The validated data pipeline, quality reporting, exploratory analysis,
+application shell, and Overview dashboard page are implemented incrementally
+with automated tests. Remaining analytical pages follow the project roadmap.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
 next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
 plan and the definition of done used at each checkpoint.
@@ -102,6 +103,11 @@ accessibility requirements, and application states are documented in
 The implemented shell's runtime flow, caching, filtering, module boundaries,
 and failure behavior are documented in
 [`docs/APP_ARCHITECTURE.md`](docs/APP_ARCHITECTURE.md).
+
+The Overview page currently provides five denominator-aware metrics,
+model-year composition, EV-type mix, leading makes, explanatory narratives, and
+expandable value tables. Its calculations remain separate from Streamlit in
+`overview_data.py`, while reusable Plotly styling lives in `ui/charts.py`.
 
 ## Data source
 

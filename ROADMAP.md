@@ -101,6 +101,8 @@ Status: complete.
 - Add headline metrics and time-based adoption views.
 - Add global filters and explain metric definitions.
 
+Status: complete.
+
 ### Task 10 — Makes and models
 
 - Add manufacturer and model rankings, comparisons, and drill-downs.

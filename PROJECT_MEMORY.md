@@ -115,16 +115,27 @@ sound software-engineering practices.
 - Passed all 49 tests plus Ruff checks. A headless health probe and full-dataset
   Streamlit execution both passed; the real default view renders Washington
   scope across model years 1999-2027 without exceptions.
+- Implemented the Overview page using a documented, immutable view model and
+  reusable Streamlit-independent Plotly figure builders.
+- Added five denominator-aware metrics, chronological model-year composition,
+  semantic BEV/PHEV mix, top-five makes, narrative summaries, exact expandable
+  tables, and the required point-in-time interpretation callout.
+- Passed all 56 tests plus Ruff checks. Full-dataset Streamlit execution renders
+  five metrics, three charts, and three accessible tables without exceptions;
+  Washington-default metrics are 293,432 vehicles, 80.8% BEV, median model year
+  2023, 34.6% known-range coverage, and 26.6% CAFV eligible.
+- Updated all rendered components to Streamlit's current `width="stretch"` API
+  so the Overview runs without known width deprecation warnings.
 
 ## Current task
 
-Task 8 is complete: the application shell, navigation, theme, shared filtering,
-cached loading, page context, and failure states are implemented and verified.
+Task 9 is complete: Overview metrics, charts, narratives, accessible tables, and
+interpretation guidance are implemented and verified on the full dataset.
 
 ## Next task
 
-Task 9: implement the Overview page metrics, model-year composition, EV-type
-mix, leading-make chart, explanatory narrative, and accessible value summaries.
+Task 10: implement the Makes & Models page rankings, concentration analysis,
+model-year heatmap, controls, narratives, and accessible tables.
 
 ## Open decisions
 
