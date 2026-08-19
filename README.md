@@ -1,0 +1,46 @@
+# Electric Vehicles Dashboard
+
+A polished Streamlit application for exploring Washington State electric
+vehicle registration data. The planned dashboard will cover adoption trends,
+manufacturers and models, geographic distribution, electric range, CAFV
+eligibility, and source-data quality.
+
+## Project status
+
+The project foundation is in place. Data cleaning, analysis, visualization,
+and the dashboard will be implemented incrementally with automated tests.
+See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
+next task.
+
+## Local setup
+
+1. Install Python 3.11 or newer.
+2. Create and activate a virtual environment.
+3. Install the project and development tools:
+
+   ```powershell
+   python -m pip install -e ".[dev]"
+   ```
+
+4. Place the source file at `data/raw/electric.csv`. Raw and generated data
+   are intentionally excluded from Git.
+5. Run the application:
+
+   ```powershell
+   streamlit run src/electricvehicles/app.py
+   ```
+
+## Development checks
+
+```powershell
+pytest
+ruff check .
+ruff format --check .
+```
+
+## Data source
+
+The working dataset is the Electric Vehicle Population Data file supplied for
+this project. Source provenance and retrieval instructions will be documented
+during the data-pipeline task.
+
