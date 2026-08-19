@@ -21,6 +21,12 @@ class DataLoadError(RuntimeError):
 
 
 def _validate_header(path: Path) -> None:
+    """Reject missing, duplicate, reordered, or unrecognized CSV columns early.
+
+    pandas makes duplicate column names unique during parsing. Reading the raw
+    header with the standard-library CSV parser first ensures that corruption
+    remains observable and produces a precise error.
+    """
     try:
         with path.open(encoding="utf-8-sig", newline="") as source:
             header = next(csv.reader(source), None)
@@ -45,7 +51,20 @@ def _validate_header(path: Path) -> None:
 
 
 def load_raw_data(path: str | Path | None = None) -> pd.DataFrame:
-    """Load the raw CSV as nullable strings without cleaning source values."""
+    """Load the raw CSV as nullable strings without cleaning source values.
+
+    Args:
+        path: Optional source path. Configuration resolution is delegated to
+            :func:`electricvehicles.config.get_data_path`.
+
+    Returns:
+        A dataframe in exact published column order. Every column uses pandas'
+        nullable string dtype so identifiers and leading zeros survive parsing.
+
+    Raises:
+        DataLoadError: If the path is missing, the header violates the schema,
+            or the file cannot be decoded or parsed.
+    """
     source_path = get_data_path(path)
     if not source_path.is_file():
         raise DataLoadError(
@@ -71,7 +90,16 @@ def load_raw_data(path: str | Path | None = None) -> pd.DataFrame:
 def load_validated_data(
     path: str | Path | None = None,
 ) -> tuple[pd.DataFrame, ValidationReport]:
-    """Load source data and reject it when blocking validation errors exist."""
+    """Load source data and reject it when blocking validation errors exist.
+
+    Returns:
+        The untouched raw dataframe and its validation report. A successful
+        report can still contain non-blocking quality warnings.
+
+    Raises:
+        DataLoadError: If ingestion fails.
+        DataValidationError: If at least one blocking contract rule fails.
+    """
     frame = load_raw_data(path)
     report = validate_dataframe(frame)
     if not report.is_valid:

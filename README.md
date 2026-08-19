@@ -61,6 +61,17 @@ for warning in validation_report.warnings:
 See [`docs/DATA_CONTRACT.md`](docs/DATA_CONTRACT.md) for the rules enforced by
 the validation layer.
 
+For analysis-ready values, use the supported end-to-end pipeline:
+
+```python
+from electricvehicles.cleaning import load_clean_data
+
+clean_data, validation_report = load_clean_data()
+```
+
+It returns the 16 renamed source fields and six documented derived fields while
+retaining auditable raw range and location values.
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for

@@ -55,6 +55,8 @@ Status: complete.
 - Derive only documented, reproducible analysis fields.
 - Add tests for every cleaning rule and edge case.
 
+Status: complete.
+
 ### Task 5 — Data-quality reporting
 
 - Measure completeness, uniqueness, validity, and consistency.

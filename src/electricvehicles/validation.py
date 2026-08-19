@@ -63,10 +63,12 @@ class DataValidationError(ValueError):
 
 
 def _blank_mask(series: pd.Series) -> pd.Series:
+    """Identify missing, empty, and whitespace-only source values."""
     return series.isna() | series.astype("string").str.strip().eq("")
 
 
 def _present_text(series: pd.Series) -> pd.Series:
+    """Return trimmed non-blank text for format and category validation."""
     return series.loc[~_blank_mask(series)].astype("string").str.strip()
 
 
@@ -77,6 +79,11 @@ def _validate_integer_column(
     *,
     nullable: bool,
 ) -> pd.Series:
+    """Parse an integer field, record failures, and return numeric values.
+
+    Returning the parsed series lets range, plausibility, and uniqueness rules
+    reuse one coercion result without changing the raw dataframe.
+    """
     blank = _blank_mask(frame[column])
     values = pd.to_numeric(frame[column].where(~blank), errors="coerce")
     invalid = (~blank) & (values.isna() | values.mod(1).ne(0))
@@ -184,6 +191,7 @@ def _validate_allowed_values(
     allowed: frozenset[str],
     report: ValidationReport,
 ) -> None:
+    """Record a blocking error when a controlled vocabulary has drifted."""
     values = _present_text(frame[column])
     unexpected = sorted(set(values) - allowed)
     if unexpected:
@@ -196,6 +204,7 @@ def _validate_allowed_values(
 
 
 def _validate_quality_warnings(frame: pd.DataFrame, report: ValidationReport) -> None:
+    """Add non-blocking completeness, format, and geographic warnings."""
     optional_columns = set(SOURCE_COLUMNS) - set(REQUIRED_VALUE_COLUMNS)
     for column in sorted(optional_columns):
         count = int(_blank_mask(frame[column]).sum())

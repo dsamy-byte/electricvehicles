@@ -152,6 +152,23 @@ Cleaning is deterministic and audit-friendly. The raw source is immutable.
 11. Do not deduplicate on VIN prefix. Exact duplicate rows or duplicate DOL IDs
     stop the pipeline for review rather than being silently removed.
 
+## Clean output schema
+
+The cleaning pipeline returns the 16 source fields under their clean names from
+the source-schema table plus these six derived fields:
+
+| Derived column | Type | Definition |
+| --- | --- | --- |
+| `electric_range_miles` | nullable integer | Copy of raw range with zero converted to missing. |
+| `ev_type_code` | string | Short display code: `BEV` or `PHEV`. |
+| `cafv_status` | string | Display status: `Eligible`, `Not eligible`, or `Unknown`. |
+| `is_washington` | boolean | Whether the normalized state code is `WA`. |
+| `longitude` | nullable float | Longitude parsed from the source WKT point. |
+| `latitude` | nullable float | Latitude parsed from the source WKT point. |
+
+The resulting dataframe therefore contains 22 columns. Cleaning never mutates
+the input dataframe, drops a row, writes a file, or imputes an unknown value.
+
 ## Baseline quality observations
 
 These observations describe only the supplied snapshot and will become
@@ -187,4 +204,3 @@ machine-generated quality checks in Task 5.
 [csv-export]: https://data.wa.gov/api/v3/views/f6w7-q2d2/export.csv?accessType=DOWNLOAD
 [data-gov]: https://catalog.data.gov/dataset/electric-vehicle-population-data
 [odbl]: https://opendatacommons.org/licenses/odbl/1-0/
-

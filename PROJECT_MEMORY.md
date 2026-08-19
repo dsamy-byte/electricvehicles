@@ -37,6 +37,9 @@ sound software-engineering practices.
 - Keep data ingestion, validation, transformation, analysis, and presentation
   concerns separate.
 - Use type hints, focused functions, automated tests, Ruff, and pytest.
+- Keep code documentation thorough: modules explain responsibilities, public
+  APIs document inputs/outputs/errors, policy-sensitive transformations explain
+  their rationale, and tests document expected behavior.
 - Use environment-based configuration for local data paths.
 - Update this file as part of every completed task before committing.
 - Use focused commits and push each completed task when GitHub is available.
@@ -67,16 +70,25 @@ sound software-engineering practices.
 - Passed 12 automated tests plus Ruff lint and format checks.
 - Validated the full 294,193-row supplied snapshot with zero blocking errors
   and eight expected missing-optional-value warnings.
+- Implemented non-mutating data cleaning with explicit column mapping, nullable
+  analysis types, identifier preservation, four-digit postal normalization,
+  raw/analytical range separation, display categories, Washington flags, and
+  parsed coordinates.
+- Added comprehensive in-code documentation and documented the 22-column clean
+  output schema.
+- Passed all 21 tests plus Ruff checks. The full clean output contains 294,193
+  rows, 192,490 analytically missing ranges, 294,183 normalized five-digit
+  postal codes, and 294,175 complete coordinate pairs.
 
 ## Current task
 
-Task 3 is complete: reproducible ingestion and validation are implemented and
-verified against fixtures and the full supplied snapshot.
+Task 4 is complete: deterministic cleaning and feature preparation are
+implemented, documented, and verified against fixtures and the full snapshot.
 
 ## Next task
 
-Task 4: implement deterministic cleaning and feature preparation with tests for
-every approved transformation and edge case.
+Task 5: implement machine-generated data-quality reporting and baseline
+expectations for future source snapshots.
 
 ## Open decisions
 
