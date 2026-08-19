@@ -79,16 +79,25 @@ sound software-engineering practices.
 - Passed all 21 tests plus Ruff checks. The full clean output contains 294,193
   rows, 192,490 analytically missing ranges, 294,183 normalized five-digit
   postal codes, and 294,175 complete coordinate pairs.
+- Added immutable, JSON-serializable data-quality models covering completeness,
+  cardinality, duplicates, range availability, coordinate coverage, Washington
+  share, and validation warnings.
+- Added a documented command-line report generator and a version-controlled
+  baseline with tolerant, reviewable drift thresholds. Generated reports remain
+  outside Git.
+- Passed all 29 tests plus Ruff checks. The full snapshot passed all 13 baseline
+  checks with 65.4298% unknown range, 99.9939% complete coordinates, and
+  99.7413% Washington records.
 
 ## Current task
 
-Task 4 is complete: deterministic cleaning and feature preparation are
-implemented, documented, and verified against fixtures and the full snapshot.
+Task 5 is complete: data-quality measurement, JSON reporting, and versioned
+baseline drift detection are implemented, documented, and verified.
 
 ## Next task
 
-Task 5: implement machine-generated data-quality reporting and baseline
-expectations for future source snapshots.
+Task 6: perform reproducible exploratory analysis, document findings and
+caveats, and identify the dashboard's strongest analytical narratives.
 
 ## Open decisions
 

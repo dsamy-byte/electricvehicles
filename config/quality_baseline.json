@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "description": "Baseline derived from the supplied 2026-08 snapshot; thresholds detect material drift without requiring an identical refresh.",
+  "row_count": {
+    "expected": 294193,
+    "relative_tolerance": 0.2
+  },
+  "maximum_missing_rates": {
+    "county": 0.001,
+    "city": 0.001,
+    "postal_code": 0.001,
+    "electric_range_raw": 0.001,
+    "legislative_district": 0.01,
+    "vehicle_location": 0.001,
+    "electric_utility": 0.001,
+    "census_tract_2020": 0.001
+  },
+  "maximum_exact_duplicate_rows": 0,
+  "maximum_duplicate_vehicle_ids": 0,
+  "unknown_range_rate": {
+    "expected": 0.6543,
+    "absolute_tolerance": 0.1
+  },
+  "washington_share": {
+    "expected": 0.9974,
+    "absolute_tolerance": 0.02
+  }
+}
+

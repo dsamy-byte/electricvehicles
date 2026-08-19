@@ -72,6 +72,18 @@ clean_data, validation_report = load_clean_data()
 It returns the 16 renamed source fields and six documented derived fields while
 retaining auditable raw range and location values.
 
+## Data-quality report
+
+Generate the machine-readable quality report with:
+
+```powershell
+python scripts/generate_quality_report.py
+```
+
+The command compares the current snapshot with version-controlled drift
+thresholds and writes ignored JSON output under `reports/generated`. See
+[`docs/DATA_QUALITY.md`](docs/DATA_QUALITY.md) for metrics and interpretation.
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for
