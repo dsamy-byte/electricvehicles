@@ -106,16 +106,25 @@ sound software-engineering practices.
 - Product decisions: default analytical location scope is Washington only;
   pages 1-4 share filters; Data Quality always describes the unfiltered source;
   maps aggregate repeated coordinates and never expose vehicle identifiers.
+- Implemented the production Streamlit shell with local theme/CSS, stable
+  five-page top navigation, cached pipeline loading keyed by file identity,
+  cascading global filters, immutable page context, reset/empty states, and
+  safe source/validation/baseline failures.
+- Kept filtering and orchestration independent of Streamlit and documented all
+  shell boundaries in `docs/APP_ARCHITECTURE.md`.
+- Passed all 49 tests plus Ruff checks. A headless health probe and full-dataset
+  Streamlit execution both passed; the real default view renders Washington
+  scope across model years 1999-2027 without exceptions.
 
 ## Current task
 
-Task 7 is complete: the dashboard product, interaction, visual, accessibility,
-privacy, performance, and state specification is documented.
+Task 8 is complete: the application shell, navigation, theme, shared filtering,
+cached loading, page context, and failure states are implemented and verified.
 
 ## Next task
 
-Task 8: implement the documented application shell, navigation, theme, shared
-filtering/components, cached pipeline loading, and failure-state handling.
+Task 9: implement the Overview page metrics, model-year composition, EV-type
+mix, leading-make chart, explanatory narrative, and accessible value summaries.
 
 ## Open decisions
 

@@ -99,6 +99,10 @@ The approved page architecture, filters, metric definitions, visual system,
 accessibility requirements, and application states are documented in
 [`docs/DASHBOARD_SPEC.md`](docs/DASHBOARD_SPEC.md).
 
+The implemented shell's runtime flow, caching, filtering, module boundaries,
+and failure behavior are documented in
+[`docs/APP_ARCHITECTURE.md`](docs/APP_ARCHITECTURE.md).
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for

@@ -1,0 +1,52 @@
+/* Shared visual refinements for the Streamlit shell.
+   Theme colors remain in .streamlit/config.toml; these rules focus on layout,
+   readable measure, focus visibility, and card treatment. */
+
+:root {
+  --ev-border: #d9e2ec;
+  --ev-muted: #52606d;
+  --ev-surface: #ffffff;
+}
+
+.block-container {
+  max-width: 1440px;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.ev-eyebrow {
+  color: var(--ev-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.ev-context {
+  color: var(--ev-muted);
+  font-size: 0.95rem;
+  margin: -0.35rem 0 1.25rem;
+}
+
+.ev-placeholder {
+  background: var(--ev-surface);
+  border: 1px solid var(--ev-border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Reinforce keyboard focus when component-level browser styles permit it. */
+:focus-visible {
+  outline: 3px solid #1769aa !important;
+  outline-offset: 2px !important;
+}
+
+@media (max-width: 700px) {
+  .block-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.25rem;
+  }
+}
+

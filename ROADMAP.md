@@ -94,6 +94,8 @@ Status: complete.
 - Add cached data loading and clear failure behavior.
 - Keep presentation separate from data and analysis logic.
 
+Status: complete.
+
 ### Task 9 — Overview and adoption trends
 
 - Add headline metrics and time-based adoption views.
