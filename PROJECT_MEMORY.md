@@ -56,16 +56,19 @@ sound software-engineering practices.
   checklist.
 - Approved the electric-range policy: retain the raw value and represent zero
   as missing in a separate cleaned field.
+- Defined the authoritative Data.WA source (`f6w7-q2d2`), ODbL 1.0 data
+  license, supplied-snapshot fingerprint, full 16-column contract, validation
+  severities, cleaning rules, baseline quality observations, and analytical
+  guardrails in `docs/DATA_CONTRACT.md`.
 
 ## Current task
 
-Task 1 is complete. The project foundation is committed locally and pushed to
-GitHub.
+Task 2 is complete: data contract and provenance are documented.
 
 ## Next task
 
-Define the dataset schema, cleaning rules, validation behavior, and source-data
-provenance before implementing the tested data pipeline.
+Task 3: implement reproducible ingestion and validation with representative
+test fixtures.
 
 ## Open decisions
 

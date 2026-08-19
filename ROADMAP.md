@@ -33,6 +33,8 @@ Status: complete.
 - Define identifier, categorical, numeric, and geographic handling.
 - Record explicit cleaning rules and validation expectations.
 
+Status: complete.
+
 ### Task 3 — Reproducible ingestion and validation
 
 - Add configuration for locating the raw source file.
@@ -137,4 +139,3 @@ Status: complete.
 - Resolve release-blocking accessibility, correctness, and performance issues.
 - Create a version tag and release notes.
 - Record future enhancements in a prioritized backlog.
-

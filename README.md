@@ -13,6 +13,10 @@ See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
 next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
 plan and the definition of done used at each checkpoint.
 
+The source schema, provenance, validation expectations, cleaning rules, and
+analytical limitations are defined in
+[`docs/DATA_CONTRACT.md`](docs/DATA_CONTRACT.md).
+
 ## Local setup
 
 1. Install Python 3.11 or newer.
