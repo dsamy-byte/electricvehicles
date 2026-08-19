@@ -17,6 +17,8 @@ sound software-engineering practices.
   comparisons, geographic analysis, electric range, CAFV eligibility, and
   data-quality reporting.
 - Raw and generated data will not be committed to Git.
+- Preserve the source `Electric Range` value and create a separate cleaned
+  value in which zero is treated as missing/unknown.
 
 ## Dataset snapshot
 
@@ -38,6 +40,8 @@ sound software-engineering practices.
 - Use environment-based configuration for local data paths.
 - Update this file as part of every completed task before committing.
 - Use focused commits and push each completed task when GitHub is available.
+- The complete implementation sequence and task definition of done live in
+  `ROADMAP.md`; update that document if project scope or ordering changes.
 
 ## Completed
 
@@ -48,6 +52,10 @@ sound software-engineering practices.
 - Verified that the Python source compiles successfully. Full pytest and Ruff
   checks await installation of the declared development dependencies.
 - Created the public GitHub repository and pushed the project foundation.
+- Documented the complete 17-task delivery roadmap and per-task completion
+  checklist.
+- Approved the electric-range policy: retain the raw value and represent zero
+  as missing in a separate cleaned field.
 
 ## Current task
 

@@ -10,7 +10,8 @@ eligibility, and source-data quality.
 The project foundation is in place. Data cleaning, analysis, visualization,
 and the dashboard will be implemented incrementally with automated tests.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
-next task.
+next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
+plan and the definition of done used at each checkpoint.
 
 ## Local setup
 
@@ -43,4 +44,3 @@ ruff format --check .
 The working dataset is the Electric Vehicle Population Data file supplied for
 this project. Source provenance and retrieval instructions will be documented
 during the data-pipeline task.
-
