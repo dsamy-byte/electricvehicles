@@ -108,6 +108,8 @@ Status: complete.
 - Add manufacturer and model rankings, comparisons, and drill-downs.
 - Ensure charts remain readable across filtering combinations.
 
+Status: complete.
+
 ### Task 11 — Geographic analysis
 
 - Add county/city analysis and an appropriate interactive map.

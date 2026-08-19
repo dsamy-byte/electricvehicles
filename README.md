@@ -8,8 +8,9 @@ eligibility, and source-data quality.
 ## Project status
 
 The validated data pipeline, quality reporting, exploratory analysis,
-application shell, and Overview dashboard page are implemented incrementally
-with automated tests. Remaining analytical pages follow the project roadmap.
+application shell, Overview page, and Makes & Models page are implemented
+incrementally with automated tests. Remaining analytical pages follow the
+project roadmap.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
 next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
 plan and the definition of done used at each checkpoint.
@@ -108,6 +109,11 @@ The Overview page currently provides five denominator-aware metrics,
 model-year composition, EV-type mix, leading makes, explanatory narratives, and
 expandable value tables. Its calculations remain separate from Streamlit in
 `overview_data.py`, while reusable Plotly styling lives in `ui/charts.py`.
+
+The Makes & Models page provides separate Top 5/10/20 rankings, make/model-safe
+identity, cumulative manufacturer concentration, a leading-make/model-year
+heatmap, narratives, and exact accessible tables. Its tested aggregations live
+in `market_data.py`.
 
 ## Data source
 

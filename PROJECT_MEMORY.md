@@ -126,16 +126,26 @@ sound software-engineering practices.
   2023, 34.6% known-range coverage, and 26.6% CAFV eligible.
 - Updated all rendered components to Streamlit's current `width="stretch"` API
   so the Overview runs without known width deprecation warnings.
+- Implemented the Makes & Models page with documented view models that treat a
+  model as `(make, model)`, deterministic tie ordering, complete rankings,
+  cumulative shares, and a zero-filled leading-make/model-year grid.
+- Added separate Top 5/10/20 make and model controls, four Plotly views (make
+  rank, model rank, concentration, heatmap), narrative summaries, exact tables,
+  and explicit current-population interpretation guidance.
+- Passed all 66 tests plus Ruff checks, including direct Streamlit execution of
+  the market renderer. In the Washington-default population, 49 makes and 198
+  make/model combinations are present; Tesla has 120,514 vehicles (41.07%), the
+  top ten makes have 82.42%, and Model Y/Model 3 are the two leading models.
 
 ## Current task
 
-Task 9 is complete: Overview metrics, charts, narratives, accessible tables, and
-interpretation guidance are implemented and verified on the full dataset.
+Task 10 is complete: Makes & Models rankings, concentration, model-year heatmap,
+controls, narratives, and accessible tables are implemented and verified.
 
 ## Next task
 
-Task 10: implement the Makes & Models page rankings, concentration analysis,
-model-year heatmap, controls, narratives, and accessible tables.
+Task 11: implement aggregate geographic metrics, privacy-safe map points,
+county/city rankings, searchable place data, narratives, and accessible tables.
 
 ## Open decisions
 
