@@ -11,6 +11,7 @@ sound software-engineering practices.
 - Application type: Streamlit web dashboard.
 - Repository name: `electricvehicles`.
 - GitHub visibility: public.
+- GitHub repository: https://github.com/dsamy-byte/electricvehicles
 - Initial audience: people exploring Washington electric-vehicle registrations.
 - Planned analysis: overview metrics, adoption trends, manufacturer/model
   comparisons, geographic analysis, electric range, CAFV eligibility, and
@@ -46,10 +47,12 @@ sound software-engineering practices.
 - Initialized a standalone Git repository on the `main` branch.
 - Verified that the Python source compiles successfully. Full pytest and Ruff
   checks await installation of the declared development dependencies.
+- Created the public GitHub repository and pushed the project foundation.
 
 ## Current task
 
-Task 1: push the committed project foundation to the public GitHub repository.
+Task 1 is complete. The project foundation is committed locally and pushed to
+GitHub.
 
 ## Next task
 
