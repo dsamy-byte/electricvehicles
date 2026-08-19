@@ -1,0 +1,4 @@
+VIN (1-10),County,City,State,Postal Code,Model Year,Make,Model,Electric Vehicle Type,Clean Alternative Fuel Vehicle (CAFV) Eligibility,Electric Range,Legislative District,DOL Vehicle ID,Vehicle Location,Electric Utility,2020 Census Tract
+5YJ3E1EA5L,Yakima,Yakima,WA,98908,2020,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,266,14,102765120,POINT (-120.60272 46.59656),PACIFICORP,53077001000
+1C4JJXP60P,King,Seattle,WA,98101,2023,JEEP,WRANGLER,Plug-in Hybrid Electric Vehicle (PHEV),Eligibility unknown as battery range has not been researched,0,43,200000001,POINT (-122.3321 47.6062),CITY OF SEATTLE - (WA)|CITY OF TACOMA - (WA),53033008101
+

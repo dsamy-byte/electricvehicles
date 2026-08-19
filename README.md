@@ -43,6 +43,24 @@ ruff check .
 ruff format --check .
 ```
 
+## Validated ingestion
+
+The loader resolves `EV_DATA_PATH` relative to the project root, preserves raw
+CSV values as nullable strings, verifies the published header before pandas can
+rename duplicate columns, and separates blocking contract errors from
+non-blocking quality warnings:
+
+```python
+from electricvehicles.ingestion import load_validated_data
+
+raw_data, validation_report = load_validated_data()
+for warning in validation_report.warnings:
+    print(warning)
+```
+
+See [`docs/DATA_CONTRACT.md`](docs/DATA_CONTRACT.md) for the rules enforced by
+the validation layer.
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for

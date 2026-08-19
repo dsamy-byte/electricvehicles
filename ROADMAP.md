@@ -43,6 +43,8 @@ Status: complete.
 - Produce actionable errors for invalid or missing inputs.
 - Add unit tests for valid and invalid fixtures.
 
+Status: complete.
+
 ### Task 4 — Cleaning and feature preparation
 
 - Normalize column names and categorical text consistently.

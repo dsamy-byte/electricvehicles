@@ -60,15 +60,23 @@ sound software-engineering practices.
   license, supplied-snapshot fingerprint, full 16-column contract, validation
   severities, cleaning rules, baseline quality observations, and analytical
   guardrails in `docs/DATA_CONTRACT.md`.
+- Added environment-aware path resolution, string-preserving CSV ingestion,
+  duplicate/exact header checks, structured validation errors and warnings,
+  machine-readable contract constants, and representative test fixtures.
+- Installed project and development dependencies in the ignored `.venv`.
+- Passed 12 automated tests plus Ruff lint and format checks.
+- Validated the full 294,193-row supplied snapshot with zero blocking errors
+  and eight expected missing-optional-value warnings.
 
 ## Current task
 
-Task 2 is complete: data contract and provenance are documented.
+Task 3 is complete: reproducible ingestion and validation are implemented and
+verified against fixtures and the full supplied snapshot.
 
 ## Next task
 
-Task 3: implement reproducible ingestion and validation with representative
-test fixtures.
+Task 4: implement deterministic cleaning and feature preparation with tests for
+every approved transformation and edge case.
 
 ## Open decisions
 

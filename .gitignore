@@ -3,8 +3,10 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
+pytest-cache-files-*/
 .ruff_cache/
 .mypy_cache/
+.test-tmp/
 
 # Virtual environments and local configuration
 .venv/
@@ -24,4 +26,3 @@ reports/generated/
 .idea/
 .DS_Store
 Thumbs.db
-
