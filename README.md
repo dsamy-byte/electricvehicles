@@ -8,9 +8,9 @@ eligibility, and source-data quality.
 ## Project status
 
 The validated data pipeline, quality reporting, exploratory analysis,
-application shell, Overview, Makes & Models, Geography, and Range & CAFV pages
-are implemented incrementally with automated tests. The remaining Data Quality
-page follows the project roadmap.
+application shell and all five specified pages are implemented incrementally
+with automated tests. Quality hardening, documentation, deployment, and release
+work continue according to the project roadmap.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
 next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
 plan and the definition of done used at each checkpoint.
@@ -124,6 +124,11 @@ The Range & CAFV page keeps known/unknown coverage explicit, separates BEV and
 PHEV distributions, displays known-value interval summaries, preserves all CAFV
 statuses, and provides exact accessible tables. Its histogram data is
 pre-aggregated in `range_cafv_data.py` rather than passed as vehicle rows.
+
+The unfiltered Data Quality page exposes authoritative provenance, the loaded
+file fingerprint, validation warnings, all baseline checks, 22-field
+missingness, the executable data dictionary, cleaning rules, analytical
+guardrails, license attribution, and project links.
 
 ## Data source
 

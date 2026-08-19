@@ -17,6 +17,7 @@ from plotly.subplots import make_subplots
 from electricvehicles.analysis import CategoryResult
 from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
+from electricvehicles.quality_page_data import MissingnessResult
 from electricvehicles.range_cafv_data import RangeBin, RangeCoverage, RangeStatistics
 
 ELECTRIC_BLUE = "#1769AA"
@@ -384,5 +385,33 @@ def range_interval_figure(results: Sequence[RangeStatistics]) -> go.Figure:
         )
     _base_layout(figure, height=max(280, 100 * len(available) + 140))
     figure.update_xaxes(title_text="Known electric range (miles)")
+    figure.update_yaxes(title_text=None, showgrid=False)
+    return figure
+
+
+def missingness_figure(results: Sequence[MissingnessResult]) -> go.Figure:
+    """Build a missing-rate chart that retains fully populated fields.
+
+    Including zero-missing fields lets users distinguish measured completeness
+    from fields omitted from reporting. Amber plus exact hover text identifies
+    incomplete fields without relying on color alone.
+    """
+    ordered = list(reversed(results))
+    figure = go.Figure(
+        go.Bar(
+            x=[result.missing_rate for result in ordered],
+            y=[result.column for result in ordered],
+            orientation="h",
+            marker_color=[
+                "#B26A00" if result.missing_count else TEAL for result in ordered
+            ],
+            customdata=[result.missing_count for result in ordered],
+            hovertemplate=(
+                "%{y}<br>Missing %{customdata:,}<br>Rate %{x:.2%}<extra></extra>"
+            ),
+        )
+    )
+    _base_layout(figure, height=max(520, 30 * len(results) + 120))
+    figure.update_xaxes(title_text="Missing share", tickformat=".0%")
     figure.update_yaxes(title_text=None, showgrid=False)
     return figure

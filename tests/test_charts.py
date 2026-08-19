@@ -3,6 +3,7 @@
 from electricvehicles.analysis import CategoryResult
 from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
+from electricvehicles.quality_page_data import MissingnessResult
 from electricvehicles.range_cafv_data import RangeBin, RangeCoverage, RangeStatistics
 from electricvehicles.ui.charts import (
     EV_TYPE_COLORS,
@@ -12,6 +13,7 @@ from electricvehicles.ui.charts import (
     horizontal_category_figure,
     market_heatmap_figure,
     market_ranking_figure,
+    missingness_figure,
     model_year_figure,
     range_coverage_figure,
     range_distribution_figure,
@@ -140,3 +142,17 @@ def test_range_interval_omits_types_without_known_values() -> None:
 
     assert len(figure.data) == 3
     assert list(figure.data[2].x) == [200]
+
+
+def test_missingness_chart_retains_zero_missing_fields() -> None:
+    """A complete field remains visible beside an incomplete field."""
+    results = (
+        MissingnessResult("optional", 5, 0.5, 5),
+        MissingnessResult("complete", 0, 0.0, 10),
+    )
+
+    figure = missingness_figure(results)
+
+    assert list(figure.data[0].y) == ["complete", "optional"]
+    assert list(figure.data[0].x) == [0.0, 0.5]
+    assert list(figure.data[0].customdata) == [0, 5]

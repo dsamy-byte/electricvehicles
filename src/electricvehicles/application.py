@@ -7,6 +7,7 @@ Streamlit makes its behavior directly testable.
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -26,6 +27,8 @@ class LoadedApplicationData:
     validation_report: ValidationReport
     quality_report: DataQualityReport
     source_path: Path
+    source_size_bytes: int
+    source_sha256: str
 
 
 @dataclass(frozen=True)
@@ -50,7 +53,18 @@ def load_application_data(path: str | Path) -> LoadedApplicationData:
     source_path = Path(path).resolve()
     cleaned, validation = load_clean_data(source_path)
     quality = build_quality_report(cleaned, validation)
-    return LoadedApplicationData(cleaned, validation, quality, source_path)
+    digest = hashlib.sha256()
+    with source_path.open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(block)
+    return LoadedApplicationData(
+        cleaned,
+        validation,
+        quality,
+        source_path,
+        source_path.stat().st_size,
+        digest.hexdigest(),
+    )
 
 
 def build_page_context(

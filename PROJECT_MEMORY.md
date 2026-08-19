@@ -157,17 +157,27 @@ sound software-engineering practices.
   Washington-default range coverage is 34.56% overall: 18.98% for 236,994 BEVs
   versus 99.98% for 56,438 PHEVs. Known medians are 215 miles for BEVs and 32
   miles for PHEVs; CAFV status is 65.44% Unknown and 26.57% Eligible.
+- Implemented the unfiltered Data Quality and Methodology page with executable
+  provenance constants, source size/SHA-256 fingerprinting, validation warnings,
+  all baseline observations, 22-field missingness, the complete clean data
+  dictionary, cleaning rules, analytical guardrails, attribution, and links.
+- Enforced unfiltered quality structurally: its view model accepts cached full
+  application artifacts rather than filtered page data. A test applies a filter
+  that removes a row and proves the quality page still reports both source rows.
+- Passed all 93 tests plus Ruff checks, including direct quality-page rendering.
+  The full snapshot reports 294,193 rows, 22 clean fields, eight warnings, and
+  13/13 passing baseline checks; its SHA-256 remains
+  `1a8c3c6b0ff3b3068cd2471d898017dae5a70d63b3265ed95b78d4108d3645d9`.
 
 ## Current task
 
-Task 12 is complete: range coverage/distributions, BEV/PHEV interval comparison,
-CAFV composition, bias guidance, narratives, and tables are implemented.
+Task 13 is complete: provenance, validation/baseline status, missingness, data
+dictionary, methodology, guardrails, attribution, and links are implemented.
 
 ## Next task
 
-Task 13: implement the unfiltered Data Quality and Methodology page with
-provenance, validation/baseline status, missingness, data dictionary, cleaning
-rules, analytical guardrails, and project links.
+Task 14: complete the automated quality suite with broader integration, failure
+state, filter interaction, UI accessibility, and full-data performance checks.
 
 ## Open decisions
 

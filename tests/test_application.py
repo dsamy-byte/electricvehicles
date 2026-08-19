@@ -15,6 +15,8 @@ def test_application_load_builds_full_snapshot_artifacts() -> None:
     assert application.validation_report.is_valid
     assert application.quality_report.row_count == 2
     assert application.source_path == FIXTURE.resolve()
+    assert application.source_size_bytes == FIXTURE.stat().st_size
+    assert len(application.source_sha256) == 64
 
 
 def test_page_context_keeps_full_quality_and_filtered_rows() -> None:

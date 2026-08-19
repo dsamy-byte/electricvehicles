@@ -8,6 +8,30 @@ disagreeing about source columns or controlled vocabularies.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
+DATASET_NAME = "Electric Vehicle Population Data"
+DATASET_PUBLISHER = "Washington State Department of Licensing (DOL)"
+DATASET_ID = "f6w7-q2d2"
+DATASET_URL = (
+    "https://data.wa.gov/Transportation/Electric-Vehicle-Population-Data/f6w7-q2d2/data"
+)
+DATA_LICENSE_NAME = "Open Data Commons Open Database License 1.0"
+DATA_LICENSE_URL = "https://opendatacommons.org/licenses/odbl/1-0/"
+PROJECT_REPOSITORY_URL = "https://github.com/dsamy-byte/electricvehicles"
+
+
+@dataclass(frozen=True)
+class FieldDefinition:
+    """User-facing definition of one analysis-ready dataframe field."""
+
+    clean_name: str
+    source_name: str
+    logical_type: str
+    nullable: bool
+    description: str
+
+
 SOURCE_COLUMNS = (
     "VIN (1-10)",
     "County",
@@ -84,3 +108,130 @@ CAFV_DISPLAY_LABELS = {
     "Not eligible due to low battery range": "Not eligible",
     "Eligibility unknown as battery range has not been researched": "Unknown",
 }
+
+# Executable dictionary covering the 16 renamed source fields and six derived
+# fields. The Data Quality page renders these same definitions.
+CLEAN_FIELD_DEFINITIONS = (
+    FieldDefinition(
+        "vin_prefix",
+        "VIN (1-10)",
+        "string",
+        False,
+        "First ten VIN characters; not a unique or complete VIN.",
+    ),
+    FieldDefinition("county", "County", "string", True, "Owner's listed county."),
+    FieldDefinition("city", "City", "string", True, "Owner's listed city."),
+    FieldDefinition(
+        "state", "State", "string", False, "Owner's two-character state code."
+    ),
+    FieldDefinition(
+        "postal_code",
+        "Postal Code",
+        "string",
+        True,
+        "Text postal identifier, normalized to five digits when possible.",
+    ),
+    FieldDefinition(
+        "model_year",
+        "Model Year",
+        "nullable integer",
+        False,
+        "VIN-decoded model year; not a registration date.",
+    ),
+    FieldDefinition("make", "Make", "string", False, "Vehicle manufacturer."),
+    FieldDefinition("model", "Model", "string", False, "Vehicle model label."),
+    FieldDefinition(
+        "ev_type",
+        "Electric Vehicle Type",
+        "string",
+        False,
+        "Full BEV or PHEV source classification.",
+    ),
+    FieldDefinition(
+        "cafv_eligibility",
+        "CAFV Eligibility",
+        "string",
+        False,
+        "Full source CAFV eligibility label.",
+    ),
+    FieldDefinition(
+        "electric_range_raw",
+        "Electric Range",
+        "nullable integer",
+        True,
+        "Auditable source electric range; zero means unresearched.",
+    ),
+    FieldDefinition(
+        "legislative_district",
+        "Legislative District",
+        "nullable integer",
+        True,
+        "Washington legislative district from 1 through 49.",
+    ),
+    FieldDefinition(
+        "dol_vehicle_id",
+        "DOL Vehicle ID",
+        "string identifier",
+        False,
+        "Unique snapshot key; never displayed as a vehicle field.",
+    ),
+    FieldDefinition(
+        "vehicle_location",
+        "Vehicle Location",
+        "WKT point string",
+        True,
+        "Approximate source point retained for auditability.",
+    ),
+    FieldDefinition(
+        "electric_utility",
+        "Electric Utility",
+        "string",
+        True,
+        "Utility or utility combination serving the listed location.",
+    ),
+    FieldDefinition(
+        "census_tract_2020",
+        "2020 Census Tract",
+        "string identifier",
+        True,
+        "Eleven-digit census tract GEOID retained as text.",
+    ),
+    FieldDefinition(
+        "electric_range_miles",
+        "Derived",
+        "nullable integer",
+        True,
+        "Analysis range with source zero converted to missing.",
+    ),
+    FieldDefinition(
+        "ev_type_code", "Derived", "string", False, "Short code: BEV or PHEV."
+    ),
+    FieldDefinition(
+        "cafv_status",
+        "Derived",
+        "string",
+        False,
+        "Display status: Eligible, Not eligible, or Unknown.",
+    ),
+    FieldDefinition(
+        "is_washington",
+        "Derived",
+        "boolean",
+        False,
+        "Whether the normalized state code equals WA.",
+    ),
+    FieldDefinition(
+        "longitude",
+        "Derived from Vehicle Location",
+        "nullable float",
+        True,
+        "Longitude parsed from a valid approximate WKT point.",
+    ),
+    FieldDefinition(
+        "latitude",
+        "Derived from Vehicle Location",
+        "nullable float",
+        True,
+        "Latitude parsed from a valid approximate WKT point.",
+    ),
+)

@@ -130,6 +130,8 @@ Status: complete.
 - Present dataset scope, provenance, cleaning rules, quality metrics, and caveats.
 - Give users enough context to interpret every dashboard result responsibly.
 
+Status: complete.
+
 ## Phase 5: Quality, delivery, and release
 
 ### Task 14 — Complete automated quality suite
