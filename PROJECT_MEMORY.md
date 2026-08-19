@@ -136,16 +136,27 @@ sound software-engineering practices.
   the market renderer. In the Washington-default population, 49 makes and 198
   make/model combinations are present; Tesla has 120,514 vehicles (41.07%), the
   top ten makes have 82.42%, and Model Y/Model 3 are the two leading models.
+- Implemented the Geography page with documented full geographic identities,
+  privacy-safe aggregate coordinate models, deterministic county/city rankings,
+  coordinate coverage, Top 5/10/20 controls, search, narratives, and accessible
+  tables.
+- Enforced privacy structurally: map points expose state/county/city,
+  approximate coordinates, and aggregate counts only—never DOL IDs or
+  vehicle-level rows. The UI reiterates that counts are not penetration rates.
+- Passed all 75 tests plus Ruff checks, including direct Geography rendering.
+  Washington-default output contains 39 counties and 563 cities; King County
+  has 141,971 vehicles (48.38%), 293,424 vehicles (99.9973%) have usable
+  coordinates, and 908 aggregate map points are rendered.
 
 ## Current task
 
-Task 10 is complete: Makes & Models rankings, concentration, model-year heatmap,
-controls, narratives, and accessible tables are implemented and verified.
+Task 11 is complete: geographic metrics, aggregate map, county/city rankings,
+search, privacy safeguards, narratives, and tables are implemented and verified.
 
 ## Next task
 
-Task 11: implement aggregate geographic metrics, privacy-safe map points,
-county/city rankings, searchable place data, narratives, and accessible tables.
+Task 12: implement range coverage/distributions, BEV/PHEV comparisons, CAFV
+analysis, selection-bias guidance, narratives, and accessible tables.
 
 ## Open decisions
 

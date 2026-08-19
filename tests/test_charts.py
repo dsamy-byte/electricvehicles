@@ -1,10 +1,13 @@
 """Tests for reusable Plotly encodings and accessible labels."""
 
 from electricvehicles.analysis import CategoryResult
+from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
 from electricvehicles.ui.charts import (
     EV_TYPE_COLORS,
+    aggregate_map_figure,
     concentration_figure,
+    geography_ranking_figure,
     horizontal_category_figure,
     market_heatmap_figure,
     market_ranking_figure,
@@ -71,3 +74,27 @@ def test_market_heatmap_uses_complete_grid() -> None:
     assert list(figure.data[0].x) == ["2020", "2021"]
     assert list(figure.data[0].y) == ["TESLA", "FORD"]
     assert [list(row) for row in figure.data[0].z] == [[2, 3], [1, 0]]
+
+
+def test_geography_ranking_retains_full_place_labels() -> None:
+    results = (
+        GeographyRank(1, "King, WA", "WA", "King", None, 80, 0.8),
+        GeographyRank(2, "Clark, WA", "WA", "Clark", None, 20, 0.2),
+    )
+
+    figure = geography_ranking_figure(results)
+
+    assert list(figure.data[0].y) == ["Clark, WA", "King, WA"]
+    assert list(figure.data[0].customdata) == [0.2, 0.8]
+
+
+def test_aggregate_map_contains_counts_without_identifiers() -> None:
+    points = (MapPoint("WA", "King", "Seattle", -122.33, 47.61, 10),)
+
+    figure = aggregate_map_figure(points)
+    trace = figure.data[0]
+
+    assert list(trace.lon) == [-122.33]
+    assert list(trace.lat) == [47.61]
+    assert list(trace.customdata[0]) == ["Seattle", "King", "WA", 10]
+    assert "Vehicles" in trace.hovertemplate

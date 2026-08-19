@@ -85,6 +85,8 @@ source-data problems.
 - Full-dataset `AppTest` execution renders `Electric Vehicles Overview` with
   Washington-only scope, model years 1999-2027, and no application exceptions.
 
-The Overview and Makes & Models renderers are now implemented. Their business
-aggregations remain in `overview_data.py` and `market_data.py`; page modules
-compose controls, figures, narratives, and accessible tables only.
+The Overview, Makes & Models, and Geography renderers are now implemented. Their
+business aggregations remain in `overview_data.py`, `market_data.py`, and
+`geography_data.py`; page modules compose controls, figures, narratives, search,
+and accessible tables only. Geography map models contain aggregate place counts
+and coordinates but no DOL identifiers or vehicle-level records.

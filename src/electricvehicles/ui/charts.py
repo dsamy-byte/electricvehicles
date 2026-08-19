@@ -14,6 +14,7 @@ from collections.abc import Sequence
 import plotly.graph_objects as go
 
 from electricvehicles.analysis import CategoryResult
+from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
 
 ELECTRIC_BLUE = "#1769AA"
@@ -205,4 +206,68 @@ def market_heatmap_figure(
     _base_layout(figure, height=max(390, min(620, 42 * len(makes) + 190)))
     figure.update_xaxes(title_text="Model year", type="category")
     figure.update_yaxes(title_text="Make", showgrid=False, autorange="reversed")
+    return figure
+
+
+def geography_ranking_figure(
+    results: Sequence[GeographyRank], *, height: int | None = None
+) -> go.Figure:
+    """Build a readable horizontal county/city ranking chart."""
+    ordered = list(reversed(results))
+    figure = go.Figure(
+        go.Bar(
+            x=[result.count for result in ordered],
+            y=[result.label for result in ordered],
+            orientation="h",
+            marker_color=ELECTRIC_BLUE,
+            customdata=[result.share for result in ordered],
+            hovertemplate=(
+                "%{y}<br>Vehicles %{x:,}<br>Share %{customdata:.1%}<extra></extra>"
+            ),
+        )
+    )
+    chart_height = height or max(320, min(720, 44 * len(results) + 100))
+    _base_layout(figure, height=chart_height)
+    figure.update_xaxes(title_text="Vehicles", tickformat=",")
+    figure.update_yaxes(title_text=None)
+    return figure
+
+
+def aggregate_map_figure(points: Sequence[MapPoint]) -> go.Figure:
+    """Build a token-free map containing aggregate place counts only.
+
+    Marker areas scale with the square root of count so the largest population
+    centers do not visually erase smaller places. Tooltips contain aggregate
+    place names and counts; no source identifiers or vehicle rows are present.
+    """
+    maximum = max((point.count for point in points), default=1)
+    marker_sizes = [7 + 31 * (point.count / maximum) ** 0.5 for point in points]
+    figure = go.Figure(
+        go.Scattermap(
+            lon=[point.longitude for point in points],
+            lat=[point.latitude for point in points],
+            mode="markers",
+            marker=dict(
+                size=marker_sizes,
+                color=ELECTRIC_BLUE,
+                opacity=0.68,
+            ),
+            customdata=[
+                (point.city, point.county, point.state, point.count) for point in points
+            ],
+            hovertemplate=(
+                "%{customdata[0]}, %{customdata[2]}<br>"
+                "%{customdata[1]} County<br>"
+                "Vehicles %{customdata[3]:,}<extra></extra>"
+            ),
+        )
+    )
+    figure.update_layout(
+        height=520,
+        margin=dict(l=0, r=0, t=0, b=0),
+        paper_bgcolor=SURFACE,
+        font=dict(color=INK, size=14),
+        map=dict(style="carto-positron", center=dict(lat=47.4, lon=-120.7), zoom=5),
+        showlegend=False,
+    )
     return figure

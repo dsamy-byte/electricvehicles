@@ -115,6 +115,8 @@ Status: complete.
 - Add county/city analysis and an appropriate interactive map.
 - Handle missing or out-of-state records transparently.
 
+Status: complete.
+
 ### Task 12 — Range, vehicle type, and CAFV analysis
 
 - Compare BEV and PHEV populations.

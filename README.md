@@ -8,7 +8,7 @@ eligibility, and source-data quality.
 ## Project status
 
 The validated data pipeline, quality reporting, exploratory analysis,
-application shell, Overview page, and Makes & Models page are implemented
+application shell, Overview, Makes & Models, and Geography pages are implemented
 incrementally with automated tests. Remaining analytical pages follow the
 project roadmap.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
@@ -114,6 +114,11 @@ The Makes & Models page provides separate Top 5/10/20 rankings, make/model-safe
 identity, cumulative manufacturer concentration, a leading-make/model-year
 heatmap, narratives, and exact accessible tables. Its tested aggregations live
 in `market_data.py`.
+
+The Geography page provides full-identity county/city rankings, aggregate
+registered-owner location markers, coordinate coverage, search, narratives,
+and accessible tables. `geography_data.py` guarantees that map view models do
+not contain vehicle identifiers.
 
 ## Data source
 
