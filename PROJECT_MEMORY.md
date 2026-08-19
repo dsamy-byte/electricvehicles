@@ -168,16 +168,28 @@ sound software-engineering practices.
   The full snapshot reports 294,193 rows, 22 clean fields, eight warnings, and
   13/13 passing baseline checks; its SHA-256 remains
   `1a8c3c6b0ff3b3068cd2471d898017dae5a70d63b3265ed95b78d4108d3645d9`.
+- Completed release-oriented automated hardening with real Streamlit filter
+  reruns, cascading-option assertions, missing-source and empty-result states,
+  accessibility/privacy contract checks, and a cross-version GitHub Actions
+  workflow covering Python 3.11 and 3.14.
+- Added an 85% branch-coverage gate. All 99 tests pass with 90.59% measured
+  branch coverage, and Ruff lint and formatting checks pass.
+- Added a documented, machine-readable full-data benchmark. On the 294,193-row
+  snapshot, the cold validated pipeline took 7.060 seconds; ordinary filter and
+  page-view-model operations took 0.085-0.255 seconds, all below the one-second
+  interaction target. Generated benchmark JSON remains outside Git.
 
 ## Current task
 
-Task 13 is complete: provenance, validation/baseline status, missingness, data
-dictionary, methodology, guardrails, attribution, and links are implemented.
+Task 14 is complete: the automated quality suite, CI matrix, failure and
+interaction states, accessibility/privacy contracts, and full-data performance
+benchmark are implemented and passing.
 
 ## Next task
 
-Task 14: complete the automated quality suite with broader integration, failure
-state, filter interaction, UI accessibility, and full-data performance checks.
+Task 15: complete documentation and operational readiness, including setup,
+usage, architecture, contribution guidance, screenshots, deployment guidance,
+license selection, and dependency/secret-management review.
 
 ## Open decisions
 

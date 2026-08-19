@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=8,<10",
+    "pytest-cov>=6,<8",
     "ruff>=0.12,<1",
 ]
 
@@ -35,3 +36,14 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 [tool.ruff.format]
 quote-style = "double"
 
+[tool.coverage.run]
+branch = true
+source = ["electricvehicles"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+fail_under = 85
+show_missing = true

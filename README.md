@@ -40,10 +40,24 @@ analytical limitations are defined in
 ## Development checks
 
 ```powershell
-pytest
-ruff check .
-ruff format --check .
+python -m pytest --cov=electricvehicles --cov-report=term-missing
+python -m ruff check .
+python -m ruff format --check .
 ```
+
+The coverage configuration enforces at least 85% branch coverage. GitHub
+Actions runs the same checks on supported oldest/newest Python versions.
+
+To benchmark the production pipeline and page view models against the configured
+full dataset, run:
+
+```powershell
+python scripts/benchmark_pipeline.py
+```
+
+The ignored output is written to `reports/generated/performance.json`. See
+[`docs/QUALITY_ASSURANCE.md`](docs/QUALITY_ASSURANCE.md) for test scope,
+accessibility limitations, and the latest reference measurement.
 
 ## Validated ingestion
 
