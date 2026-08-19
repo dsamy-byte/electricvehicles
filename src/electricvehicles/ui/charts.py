@@ -22,14 +22,19 @@ from electricvehicles.range_cafv_data import RangeBin, RangeCoverage, RangeStati
 
 ELECTRIC_BLUE = "#1769AA"
 TEAL = "#147D78"
+PINK = "#C2185B"
+RED = "#B42318"
 INK = "#14213D"
 MUTED_INK = "#52606D"
 BORDER = "#D9E2EC"
 SURFACE = "#FFFFFF"
-EV_TYPE_COLORS = {"BEV": ELECTRIC_BLUE, "PHEV": TEAL}
+# Keep EV-type colors centralized because the same categories appear on the
+# Overview and Range & CAFV pages. The dark tones retain readable contrast with
+# the charts' white in-bar labels while honoring the product color selection.
+EV_TYPE_COLORS = {"BEV": PINK, "PHEV": RED}
 CAFV_COLORS = {
     "Eligible": "#287D3C",
-    "Not eligible": "#B42318",
+    "Not eligible": RED,
     "Unknown": "#B26A00",
 }
 

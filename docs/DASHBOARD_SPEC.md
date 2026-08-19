@@ -222,11 +222,12 @@ tokens for implementation and browser verification:
 | Border | `#D9E2EC` | Dividers and card outlines |
 | Electric blue | `#1769AA` | Primary series/actions |
 | Teal | `#147D78` | Secondary series/positive neutral |
+| Pink | `#C2185B` | BEV category |
 | Amber | `#B26A00` | Unknown/warning categories |
-| Red | `#B42318` | Errors/not eligible when semantically required |
+| Red | `#B42318` | PHEV category and errors/not eligible |
 | Green | `#287D3C` | Passed/eligible when semantically required |
 
-BEV and PHEV keep the same colors on every page. Unknown CAFV/range uses amber
+BEV uses pink and PHEV uses red consistently on every page. Unknown CAFV/range uses amber
 plus a text label or pattern distinction. Eligible/not eligible colors are not
 reused for unrelated ranking series.
 
@@ -337,4 +338,3 @@ Task 7 is implemented successfully when Tasks 8-13 can be built without an
 unresolved decision about navigation, filtering, metrics, chart type, color
 semantics, accessibility, error states, or analytical wording. Deviations from
 this specification must be recorded in `PROJECT_MEMORY.md` with rationale.
-

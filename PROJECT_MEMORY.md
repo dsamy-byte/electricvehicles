@@ -178,6 +178,9 @@ sound software-engineering practices.
   snapshot, the cold validated pipeline took 7.060 seconds; ordinary filter and
   page-view-model operations took 0.085-0.255 seconds, all below the one-second
   interaction target. Generated benchmark JSON remains outside Git.
+- Updated the shared EV-type palette at the user's request: BEV is pink
+  (`#C2185B`) and PHEV is red (`#B42318`) everywhere those categories appear.
+  A chart regression assertion protects the exact mapping.
 
 ## Current task
 

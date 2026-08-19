@@ -50,6 +50,7 @@ def test_horizontal_chart_puts_leading_category_at_top() -> None:
     # is reversed while preserving the visual leader-first result.
     assert list(trace.y) == ["PHEV", "BEV"]
     assert list(trace.marker.color) == [EV_TYPE_COLORS["PHEV"], EV_TYPE_COLORS["BEV"]]
+    assert EV_TYPE_COLORS == {"BEV": "#C2185B", "PHEV": "#B42318"}
     assert list(trace.customdata) == [0.2, 0.8]
 
 
