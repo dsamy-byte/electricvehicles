@@ -88,16 +88,27 @@ sound software-engineering practices.
 - Passed all 29 tests plus Ruff checks. The full snapshot passed all 13 baseline
   checks with 65.4298% unknown range, 99.9939% complete coordinates, and
   99.7413% Washington records.
+- Added presentation-neutral, immutable exploratory-analysis models and a JSON
+  generator for model-year composition, EV/CAFV mix, make/model rankings,
+  geographic concentration, and known-range distributions.
+- Passed all 38 tests plus Ruff checks and documented verified findings and five
+  primary dashboard narratives in `docs/EDA_FINDINGS.md`.
+- Key findings: BEVs are 80.75%; Tesla is 41.10%; the top five counties contain
+  79.15%; model years 2021+ comprise 78.59% of this current snapshot; and known
+  range covers only 18.98% of BEVs versus 99.98% of PHEVs.
+- Analytical guardrail reinforced: model-year composition is not sales or
+  historical adoption, geographic counts are not penetration rates, and range
+  statistics must disclose known-value coverage.
 
 ## Current task
 
-Task 5 is complete: data-quality measurement, JSON reporting, and versioned
-baseline drift detection are implemented, documented, and verified.
+Task 6 is complete: reproducible exploratory analysis and its findings, caveats,
+and recommended dashboard narratives are implemented and documented.
 
 ## Next task
 
-Task 6: perform reproducible exploratory analysis, document findings and
-caveats, and identify the dashboard's strongest analytical narratives.
+Task 7: define the dashboard information architecture, pages, filters, metrics,
+charts, visual system, accessibility rules, and application states.
 
 ## Open decisions
 

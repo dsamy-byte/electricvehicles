@@ -84,6 +84,17 @@ The command compares the current snapshot with version-controlled drift
 thresholds and writes ignored JSON output under `reports/generated`. See
 [`docs/DATA_QUALITY.md`](docs/DATA_QUALITY.md) for metrics and interpretation.
 
+## Reproducible exploratory analysis
+
+Generate the presentation-neutral exploratory results with:
+
+```powershell
+python scripts/generate_eda_report.py
+```
+
+The verified findings, limitations, and recommended dashboard narratives are in
+[`docs/EDA_FINDINGS.md`](docs/EDA_FINDINGS.md).
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for
