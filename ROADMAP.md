@@ -84,6 +84,8 @@ Status: complete.
 - Define empty, loading, warning, and error states.
 - Confirm the specification before full UI implementation.
 
+Status: complete.
+
 ## Phase 4: Application implementation
 
 ### Task 8 — Application shell and shared components

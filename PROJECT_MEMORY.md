@@ -99,16 +99,23 @@ sound software-engineering practices.
 - Analytical guardrail reinforced: model-year composition is not sales or
   historical adoption, geographic counts are not penetration rates, and range
   statistics must disclose known-value coverage.
+- Defined the five-page dashboard architecture, global filter precedence,
+  metric formulas, exact chart choices, responsive visual system, accessibility
+  requirements, privacy rules, performance target, and all application states
+  in `docs/DASHBOARD_SPEC.md`.
+- Product decisions: default analytical location scope is Washington only;
+  pages 1-4 share filters; Data Quality always describes the unfiltered source;
+  maps aggregate repeated coordinates and never expose vehicle identifiers.
 
 ## Current task
 
-Task 6 is complete: reproducible exploratory analysis and its findings, caveats,
-and recommended dashboard narratives are implemented and documented.
+Task 7 is complete: the dashboard product, interaction, visual, accessibility,
+privacy, performance, and state specification is documented.
 
 ## Next task
 
-Task 7: define the dashboard information architecture, pages, filters, metrics,
-charts, visual system, accessibility rules, and application states.
+Task 8: implement the documented application shell, navigation, theme, shared
+filtering/components, cached pipeline loading, and failure-state handling.
 
 ## Open decisions
 

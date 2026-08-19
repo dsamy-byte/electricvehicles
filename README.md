@@ -95,6 +95,10 @@ python scripts/generate_eda_report.py
 The verified findings, limitations, and recommended dashboard narratives are in
 [`docs/EDA_FINDINGS.md`](docs/EDA_FINDINGS.md).
 
+The approved page architecture, filters, metric definitions, visual system,
+accessibility requirements, and application states are documented in
+[`docs/DASHBOARD_SPEC.md`](docs/DASHBOARD_SPEC.md).
+
 ## Data source
 
 The working dataset is the Electric Vehicle Population Data file supplied for
