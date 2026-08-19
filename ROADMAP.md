@@ -123,6 +123,8 @@ Status: complete.
 - Visualize known electric ranges without treating unknown zeros as real range.
 - Explain CAFV eligibility and its unknown category.
 
+Status: complete.
+
 ### Task 13 — Data-quality and methodology page
 
 - Present dataset scope, provenance, cleaning rules, quality metrics, and caveats.

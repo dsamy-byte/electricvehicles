@@ -12,10 +12,12 @@ from __future__ import annotations
 from collections.abc import Sequence
 
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from electricvehicles.analysis import CategoryResult
 from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
+from electricvehicles.range_cafv_data import RangeBin, RangeCoverage, RangeStatistics
 
 ELECTRIC_BLUE = "#1769AA"
 TEAL = "#147D78"
@@ -24,6 +26,11 @@ MUTED_INK = "#52606D"
 BORDER = "#D9E2EC"
 SURFACE = "#FFFFFF"
 EV_TYPE_COLORS = {"BEV": ELECTRIC_BLUE, "PHEV": TEAL}
+CAFV_COLORS = {
+    "Eligible": "#287D3C",
+    "Not eligible": "#B42318",
+    "Unknown": "#B26A00",
+}
 
 
 def _base_layout(figure: go.Figure, *, height: int) -> go.Figure:
@@ -270,4 +277,112 @@ def aggregate_map_figure(points: Sequence[MapPoint]) -> go.Figure:
         map=dict(style="carto-positron", center=dict(lat=47.4, lon=-120.7), zoom=5),
         showlegend=False,
     )
+    return figure
+
+
+def range_coverage_figure(results: Sequence[RangeCoverage]) -> go.Figure:
+    """Build a stacked known/unknown coverage chart for each EV type."""
+    labels = [result.ev_type_code for result in results]
+    known = [result.known_count for result in results]
+    unknown = [result.unknown_count for result in results]
+    figure = go.Figure()
+    figure.add_bar(
+        name="Known range",
+        y=labels,
+        x=known,
+        orientation="h",
+        marker_color=TEAL,
+        hovertemplate="%{y}<br>Known %{x:,}<extra></extra>",
+    )
+    figure.add_bar(
+        name="Unknown range",
+        y=labels,
+        x=unknown,
+        orientation="h",
+        marker_color="#B26A00",
+        hovertemplate="%{y}<br>Unknown %{x:,}<extra></extra>",
+    )
+    _base_layout(figure, height=290)
+    figure.update_layout(barmode="stack", showlegend=True, legend_title_text=None)
+    figure.update_xaxes(title_text="Vehicles", tickformat=",")
+    figure.update_yaxes(title_text=None, showgrid=False)
+    return figure
+
+
+def range_distribution_figure(results: Sequence[RangeBin]) -> go.Figure:
+    """Build separate known-range histograms from pre-aggregated bins."""
+    ev_types = sorted({result.ev_type_code for result in results})
+    if not ev_types:
+        return _base_layout(go.Figure(), height=300)
+    figure = make_subplots(
+        rows=len(ev_types),
+        cols=1,
+        shared_xaxes=True,
+        vertical_spacing=0.13,
+        subplot_titles=[f"{ev_type} — known values" for ev_type in ev_types],
+    )
+    for row, ev_type in enumerate(ev_types, start=1):
+        values = [item for item in results if item.ev_type_code == ev_type]
+        figure.add_trace(
+            go.Bar(
+                x=[item.lower_miles for item in values],
+                y=[item.count for item in values],
+                width=[item.upper_miles - item.lower_miles + 1 for item in values],
+                marker_color=EV_TYPE_COLORS.get(ev_type, ELECTRIC_BLUE),
+                customdata=[item.label for item in values],
+                hovertemplate=("%{customdata} miles<br>Vehicles %{y:,}<extra></extra>"),
+                showlegend=False,
+            ),
+            row=row,
+            col=1,
+        )
+    _base_layout(figure, height=max(330, 270 * len(ev_types)))
+    figure.update_xaxes(title_text="Known electric range (miles)", row=len(ev_types))
+    figure.update_yaxes(title_text="Vehicles", tickformat=",")
+    return figure
+
+
+def range_interval_figure(results: Sequence[RangeStatistics]) -> go.Figure:
+    """Show min/max, interquartile range, and median for known values only."""
+    available = [result for result in results if result.median_miles is not None]
+    figure = go.Figure()
+    for result in available:
+        color = EV_TYPE_COLORS.get(result.ev_type_code, ELECTRIC_BLUE)
+        figure.add_trace(
+            go.Scatter(
+                x=[result.minimum_miles, result.maximum_miles],
+                y=[result.ev_type_code, result.ev_type_code],
+                mode="lines",
+                line=dict(color=BORDER, width=4),
+                hoverinfo="skip",
+                showlegend=False,
+            )
+        )
+        figure.add_trace(
+            go.Scatter(
+                x=[result.percentile_25_miles, result.percentile_75_miles],
+                y=[result.ev_type_code, result.ev_type_code],
+                mode="lines",
+                line=dict(color=color, width=16),
+                hoverinfo="skip",
+                showlegend=False,
+            )
+        )
+        figure.add_trace(
+            go.Scatter(
+                x=[result.median_miles],
+                y=[result.ev_type_code],
+                mode="markers",
+                marker=dict(color=INK, size=11, symbol="diamond"),
+                customdata=[(result.known_count, result.known_share)],
+                hovertemplate=(
+                    "%{y}<br>Median %{x:.1f} miles<br>Known %{customdata[0]:,} "
+                    "(%{customdata[1]:.1%})<extra></extra>"
+                ),
+                showlegend=False,
+            )
+        )
+    _base_layout(figure, height=max(280, 100 * len(available) + 140))
+    figure.update_xaxes(title_text="Known electric range (miles)")
+    figure.update_yaxes(title_text=None, showgrid=False)
     return figure

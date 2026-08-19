@@ -8,9 +8,9 @@ eligibility, and source-data quality.
 ## Project status
 
 The validated data pipeline, quality reporting, exploratory analysis,
-application shell, Overview, Makes & Models, and Geography pages are implemented
-incrementally with automated tests. Remaining analytical pages follow the
-project roadmap.
+application shell, Overview, Makes & Models, Geography, and Range & CAFV pages
+are implemented incrementally with automated tests. The remaining Data Quality
+page follows the project roadmap.
 See [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md) for the current project state and
 next task. See [`ROADMAP.md`](ROADMAP.md) for the complete task-by-task delivery
 plan and the definition of done used at each checkpoint.
@@ -119,6 +119,11 @@ The Geography page provides full-identity county/city rankings, aggregate
 registered-owner location markers, coordinate coverage, search, narratives,
 and accessible tables. `geography_data.py` guarantees that map view models do
 not contain vehicle identifiers.
+
+The Range & CAFV page keeps known/unknown coverage explicit, separates BEV and
+PHEV distributions, displays known-value interval summaries, preserves all CAFV
+statuses, and provides exact accessible tables. Its histogram data is
+pre-aggregated in `range_cafv_data.py` rather than passed as vehicle rows.
 
 ## Data source
 

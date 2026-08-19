@@ -147,16 +147,27 @@ sound software-engineering practices.
   Washington-default output contains 39 counties and 563 cities; King County
   has 141,971 vehicles (48.38%), 293,424 vehicles (99.9973%) have usable
   coordinates, and 908 aggregate map points are rendered.
+- Implemented the Range & CAFV page with documented, pre-aggregated view models
+  for known/unknown coverage, per-type distribution bins, known-value interval
+  statistics, and all three CAFV categories.
+- Added four headline metrics, four Plotly views, exact accessible tables, and
+  explicit selection-bias guidance. Unknown range never becomes zero, Unknown
+  CAFV remains separate, and BEV/PHEV statistics are never silently combined.
+- Passed all 87 tests plus Ruff checks, including direct Range & CAFV rendering.
+  Washington-default range coverage is 34.56% overall: 18.98% for 236,994 BEVs
+  versus 99.98% for 56,438 PHEVs. Known medians are 215 miles for BEVs and 32
+  miles for PHEVs; CAFV status is 65.44% Unknown and 26.57% Eligible.
 
 ## Current task
 
-Task 11 is complete: geographic metrics, aggregate map, county/city rankings,
-search, privacy safeguards, narratives, and tables are implemented and verified.
+Task 12 is complete: range coverage/distributions, BEV/PHEV interval comparison,
+CAFV composition, bias guidance, narratives, and tables are implemented.
 
 ## Next task
 
-Task 12: implement range coverage/distributions, BEV/PHEV comparisons, CAFV
-analysis, selection-bias guidance, narratives, and accessible tables.
+Task 13: implement the unfiltered Data Quality and Methodology page with
+provenance, validation/baseline status, missingness, data dictionary, cleaning
+rules, analytical guardrails, and project links.
 
 ## Open decisions
 

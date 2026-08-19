@@ -3,6 +3,7 @@
 from electricvehicles.analysis import CategoryResult
 from electricvehicles.geography_data import GeographyRank, MapPoint
 from electricvehicles.market_data import HeatmapCell, MarketRank
+from electricvehicles.range_cafv_data import RangeBin, RangeCoverage, RangeStatistics
 from electricvehicles.ui.charts import (
     EV_TYPE_COLORS,
     aggregate_map_figure,
@@ -12,6 +13,9 @@ from electricvehicles.ui.charts import (
     market_heatmap_figure,
     market_ranking_figure,
     model_year_figure,
+    range_coverage_figure,
+    range_distribution_figure,
+    range_interval_figure,
 )
 
 
@@ -98,3 +102,41 @@ def test_aggregate_map_contains_counts_without_identifiers() -> None:
     assert list(trace.lat) == [47.61]
     assert list(trace.customdata[0]) == ["Seattle", "King", "WA", 10]
     assert "Vehicles" in trace.hovertemplate
+
+
+def test_range_coverage_stacks_known_and_unknown_counts() -> None:
+    coverage = (
+        RangeCoverage("BEV", 10, 4, 6, 0.4),
+        RangeCoverage("PHEV", 5, 5, 0, 1.0),
+    )
+
+    figure = range_coverage_figure(coverage)
+
+    assert figure.layout.barmode == "stack"
+    assert list(figure.data[0].x) == [4, 5]
+    assert list(figure.data[1].x) == [6, 0]
+
+
+def test_range_distribution_uses_preaggregated_bins() -> None:
+    bins = (
+        RangeBin("BEV", 100, 109, "100-109", 3),
+        RangeBin("PHEV", 20, 29, "20-29", 4),
+    )
+
+    figure = range_distribution_figure(bins)
+
+    assert len(figure.data) == 2
+    assert list(figure.data[0].y) == [3]
+    assert list(figure.data[1].y) == [4]
+
+
+def test_range_interval_omits_types_without_known_values() -> None:
+    statistics = (
+        RangeStatistics("BEV", 10, 4, 0.4, 100, 150, 200, 190, 240, 300),
+        RangeStatistics("PHEV", 5, 0, 0.0, None, None, None, None, None, None),
+    )
+
+    figure = range_interval_figure(statistics)
+
+    assert len(figure.data) == 3
+    assert list(figure.data[2].x) == [200]
